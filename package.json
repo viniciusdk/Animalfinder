@@ -1,0 +1,19 @@
+{
+  "name": "animalfinder",
+  "version": "1.0.0",
+  "description": "Encontrar animais perdidos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciusdk/Animalfinder.git"
+  },
+  "author": "Vinicius P Alves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viniciusdk/Animalfinder/issues"
+  },
+  "homepage": "https://github.com/viniciusdk/Animalfinder#readme"
+}
