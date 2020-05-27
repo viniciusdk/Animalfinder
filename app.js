@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-const rotaDonos = require('./routes/dono');
-const rotaAnimal = require('./routes/animal'); 
+const rotaDonos = require('./routes/dono-route');
+const rotaAnimal = require('./routes/animal-route'); 
 
 app.use(morgan('dev'));
 
