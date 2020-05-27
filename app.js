@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const rotaDonos = require('./routes/dono-route');
 const rotaAnimal = require('./routes/animal-route'); 
@@ -25,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/donos', rotaDonos);
-app.use('/animais', userRoutes);
+app.use('/animais', rotaAnimal);
 
 app.use((req, res, next) => {
     const error = new Error('Not found...');
