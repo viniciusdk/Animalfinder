@@ -5,7 +5,7 @@ const Login = require("../middleware/login-middleware");
 
 const DonoController = require("../controllers/dono-controller");
 
-router.post("/create", DonoController.createDono);
+router.post("/cadastro", DonoController.cadastroDono);
 router.post("/login", DonoController.login);
 
 
