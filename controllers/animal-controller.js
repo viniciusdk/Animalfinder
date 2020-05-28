@@ -61,3 +61,26 @@ exports.atualizarAnimal = (req, res, next) => {
     });
   });
 };
+
+exports.excluirAnimal = (req, res, next) => {
+  mysql.getConnection((error1, conn) => {
+    conn.query(`select * from Animal where id_dono = ?`,
+      [res.locals.id_dono],
+      (error, results, fields) => {
+        if (error) {
+          res.status(500).send({ error: error });
+        } else {
+          conn.query(`delete from Animal where id_animal = ?`,
+            [req.body.id_animal],
+            (error, results, fields) => {
+              conn.release();
+              if (error) {
+                res.status(500).send({ error: error });
+              } else {
+                res.status(201).send({ message: "Animal Excluido com Sucesso." });
+              }
+            });
+        }
+      });
+  });
+};
