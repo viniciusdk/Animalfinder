@@ -41,3 +41,44 @@ exports.createDono = (req, res, next) => {
         }
     });
 };
+
+exports.login = (req, res, next) => {
+
+  mysql.getConnection((error1, conn) => {
+    conn.query(`select * from Dono where email = ?`, [req.body.email], (error, rows, fields) => {
+      conn.release();
+      if (error) {
+        res.status(500).send({ error: error });
+      } else {
+        if (rows.length < 1) {
+          return res.status(401).send({ message: "Falha na Autenticação" });
+        } else {
+          bcrypt.compare(req.body.senha, rows[0].senha, (err, result) => {
+            if (err) {
+              return res.status(401).json({ message: "Falha na Autenticação" });
+            }
+            if (result) {
+              const token = jwt.sign(
+                {
+                  email: rows[0].email,
+                  nome: rows[0].nome,
+                  id_dono: rows[0].id_dono
+                },
+                process.env.JWT_KEY,
+                {
+                  expiresIn: "1d"
+                }
+              );
+              return res.status(200).json({
+                message: "Autenticado com Sucesso",
+                token: token,
+              });
+            } else {
+              res.status(401).json({ message: "Falha na Autenticação" });
+            }
+          });
+        }
+      }
+    });
+  });
+};
