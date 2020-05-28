@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
 
-exports.createDono = (req, res, next) => {
+exports.cadastroDono = (req, res, next) => {
 
     let response = [];
     let dono = req.body;
